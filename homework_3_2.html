@@ -1,0 +1,66 @@
+<!-- 
+    Запросите у пользователя ввести какую-то фразу. Отобразите каждое отдельное слово в виде списка ul li. 
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой. Найдите все буквы "а" их количество в модальное окно. 
+ -->
+ 
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework_3_2</title>
+</head>
+<body>
+	<form>
+		<h2>Введіть текст українською мовою</h2>
+			<input type="text" id="myInput" name="input" size="30" /><br />
+			<input type="button" value="Розбити на слова" onclick="splitWord(this.form)" />
+			<input type="button" value="Кількість букв А" onclick="numberOfLetters(this.form)" />
+     
+		</form>
+	<ul id="myList">
+
+	</ul>
+    <script>
+		
+		
+        function splitWord(form) {
+			var txt = form.input.value;
+			console.log(txt);
+           	separate = txt.split(' ');
+			console.log(separate)
+			for (var i=0; i < separate.length; i++){
+				var newItem = document.createElement("li");
+				if (i==0){
+					var firstWord = separate[i];
+					firstWord = firstWord.toUpperCase();
+					newItem.innerHTML = firstWord;
+					console.log(newItem);
+					document.getElementById("myList").appendChild(newItem);
+				} else {
+					if (i==1 || i==2){
+						secondWord = separate[i];
+						secondWord = secondWord.toLowerCase();
+              			 newItem.innerHTML = secondWord;
+              			 document.getElementById("myList").appendChild(newItem);
+					} else {
+						newItem.innerHTML = separate[i];
+              			 document.getElementById("myList").appendChild(newItem);
+				}
+				}
+			}
+        };
+		
+		function numberOfLetters(form){
+			var txt = form.input.value;
+			number = txt.match(/а/gi);
+			console.log(number);
+			if (number!=null){
+				alert(number.length);
+			} else {
+					alert ('Українська буква А в тексті відсутння ');
+				}
+		}
+    </script>
+
+</body>
+</html>

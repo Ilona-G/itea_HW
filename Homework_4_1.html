@@ -1,0 +1,66 @@
+<!-- Напишите регулярные выражения, которые будут выбирать 
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $2.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>HomeWork_4_1</title>
+ </head>
+ <body>
+  <p> 03802 Києвосвятошинський район 2568978;    255.255.255.102, 366.458.12; Сумочка - $50.3, гаманець - 0,23 грн ; Новини 19/03/2019</p>
+  
+ <button onclick="myFunction()">Тиць</button>
+	
+	<h3>Індекс:</h3>
+    <p id="index"></p>
+    
+    <h3>IP </h3>
+    <p id = "ip"></p>
+	
+
+    <h3> Ціна </h3>
+    <p id = "prise"></p>
+
+    <h3> Дата </h3>
+    <p id = "data"></p>
+
+	
+    <script>
+
+	function myFunction() {
+    var str = document.querySelector('p').innerHTML;
+
+    var patt1 = /\d{5}\s/ig;
+
+    var result1 = str.match(patt1);
+    document.getElementById("index").innerHTML = result1;
+    
+    var patt2 = /([0-2]?[0-9]?[0-9]\.){3}[0-2]?[0-9]?[0-9]/ig
+    var result2 = str.match(patt2);
+    document.getElementById("ip").innerHTML = result2;
+
+    var patt3 = /\$\d{1,2}\.\d{1,2}/ig
+    var result3 = str.match(patt3);
+    document.getElementById("prise").innerHTML = result3;
+
+    var patt4 = /[0-3][0-9]\/[0,1][0-9]\/\d{4}/ig
+    var result4 = str.match(patt4);
+    document.getElementById("data").innerHTML = result4;
+
+   
+ };
+</script>
+
+ 
+     <!--<script type="text/javascript">
+     /d{5}
+     /([0-255]{3}){4}
+     /$/d/.d{2}
+     [1-30]{2}//[1-12]{2}[1920-2020]{4}
+ 	</script>-->
+ </body>
+ </html>

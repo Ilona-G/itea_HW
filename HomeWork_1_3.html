@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HomeWork_1_3</title>
+</head>
+<body>
+	<ul id = "list"><li id="listItem">Перший елемент</li><li>Другий елемент</li><li>Третій елемент</li><li>Четвертий елемент</li><li>П'ятий елемент</li></ul>
+	
+	<input type="button" value="Вибрати перший елемент" onclick="chooseFirst(this.form)" />
+	<input type="button" value="Вибрати останній елемент" onclick="chooseLast(this.form)" />
+	<input type="button" value="Вибрати наступний елемент" onclick="chooseNext(this.form)" />
+	<input type="button" value="Вибрати попередній елемент" onclick="choosePrevious(this.form)" />
+	<input type="button" value="Додати елемент" onclick="append(this.form)" />
+	<input type="button" value="Видалити елемент" onclick="remove(this.form)" />
+	<input type="button" value="Додати елемент на початок" onclick="appendOnTop(this.form)" />
+	
+	<script>
+	
+		var chooseItem = document.getElementById("list");
+		var actualItem = null;
+		
+		
+		/*function choose(){
+			actualItem.style.color = "green";
+		}*/
+		
+		function chooseFirst(form){
+			if (actualItem!=null){chooseItem.childNodes[actualItem].style.color = "black";}
+			var  chooseItemFirst = chooseItem.firstChild;
+			//console.log(chooseItemFirst);
+			chooseItemFirst.style.color = "green";
+			actualItem = 0;
+			//actualItem.style.color = "green";
+			console.log(actualItem);
+		}
+		
+		function chooseLast(form){
+			if (actualItem!=null){chooseItem.childNodes[actualItem].style.color = "black";}
+			var chooseItemLast = chooseItem.lastChild;
+			//console.log(chooseItemLast)
+			chooseItemLast.style.color = "green";
+			//actualItem = chooseItemLast;
+			actualItem = chooseItem.childNodes.length-1;
+			//actualItem.style.color = "green";
+			console.log(actualItem);
+			}
+			
+		function chooseNext(form){
+			if (actualItem!=null){chooseItem.childNodes[actualItem].style.color = "black";}
+			if (actualItem < chooseItem.childNodes.length-1){
+				var nextItem = chooseItem.childNodes[actualItem+1];
+				actualItem +=1;
+				console.log(nextItem);
+				nextItem.style.color = "green";
+			} else {alert ("Більше намає!")}
+			
+		}
+		
+		function choosePrevious(form){
+			if (actualItem!=null){chooseItem.childNodes[actualItem].style.color = "black";}
+			if (actualItem > 0){
+			var PreviousItem = chooseItem.childNodes[actualItem-1];
+			actualItem -=1;
+			console.log(PreviousItem);
+			PreviousItem.style.color = "green";
+			} else {alert ("Більше намає!")}
+		}
+			
+		function appendOnTop(form){
+			var newItem = document.createElement("li")
+			newItem.innerHTML = "Новий елемент";
+			chooseItem.insertBefore(newItem, listItem);
+		}
+		
+	
+		function append(form){
+			var newItem = document.createElement("li");
+				newItem.innerHTML = "Новий елемент";
+				document.getElementById("list").appendChild(newItem);			
+		}
+		
+		function remove(form){
+			var removeItem = chooseItem.childNodes[actualItem]; //chooseItem.lastChild;
+			actualItem -=1;
+			console.log(removeItem);
+			chooseItem.removeChild(removeItem);
+		}
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!-- Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30, 
+    также добавьте кнопки которые останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отcчет. 
+    Также попробуйте изменить код так чтобы отчет начинался с 30 и заканчивался на 1. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork_3_1</title>
+    <style>
+        p{
+            margin: 50px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <p id="counter">Таймер</p>
+    <br>
+
+    <button onclick="startCounter()">Запустити</button>
+    <button onclick="stopCounter()">Зупинити</button>
+    <button onclick="resetCounter()">Обнулити</button>
+    <button onclick="reverseCounter()">Зворотній порядок</button>
+
+    <script>
+        var timer = ''
+        , count = 0
+        ;
+
+    function add(){
+        document.getElementById('counter').innerHTML = count;
+        if (count<=30){count++;} else {count=0;}        
+        }
+              
+    function startCounter()  {
+        clearInterval(timer);
+        timer = setInterval(add, 1000);        
+    }
+
+    function stopCounter()  {
+        clearInterval(timer);
+        
+    }
+    function reverseCounter(){
+        clearInterval(timer);
+        timer = setInterval(
+          function(){
+            document.getElementById('counter').innerHTML = count;
+            count--; 
+            if(count<=0){count=30;}
+         }
+         , 1000);      
+    }
+
+    function resetCounter(){
+        count=0;
+        document.getElementById('counter').innerHTML = count;
+    }      
+    </script>
+</body>
+</html>
