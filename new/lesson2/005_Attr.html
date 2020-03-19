@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Attr</title>
+    <style>
+        a[target] {
+            background-color: yellow;
+        }
+        a[target='_blank'] { 
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" target="_top">w3schools.com</a>
+    <a href="http://www.google.com" target="_blank">google.com</a>
+    <a href="http://www.wikipedia.org" target="_self">wikipedia.org</a>
+    <a href="#">Someting</a>
+    <br>
+    <button id='Btn'> Change</button>
+    <script>
+        
+        var myBtn = document.getElementById('Btn');
+        var myA = document.getElementsByTagName('a');
+        
+        myBtn.onclick = function(){
+            for(var i=0; i<myA.length; i++){
+                if(myA[i].hasAttribute('Target')){
+                    if(myA[i].getAttribute('Target') ==='_blank'){
+                        myA[i].style. backgroundColor= 'pink';
+                    } else {
+                        myA[i].style. backgroundColor= 'tomato';
+                        }
+                } else {return}               
+            }      
+        }
+    </script>
+
+</body>
+</html>

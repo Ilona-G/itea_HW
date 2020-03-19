@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        #childDiv{
+            display: block;
+            border: 2px solid black;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+          var mainDiv = document.getElementById("main-div");
+          var outputHere = document.getElementById("outputHere");
+
+          mainDiv.addEventListener("mouseover", ShowText);
+          
+          function ShowText (event) {
+           
+            var target = event.target 
+            var dataToggleId = target.getAttribute('data-tooltip');
+            if (!dataToggleId) {
+                return
+            };
+
+            console.log (dataToggleId);
+            outputHere.innerHTML = dataToggleId;
+        };
+
+    };
+    </script>
+</head>
+<body>
+    <!-- Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления. Используйте только один обработчик.
+    Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы, подсказка сплыва под ними, 
+    а не в модальном окне. Используйте addEventListener -->
+
+    <div id="main-div">
+        <span data-tooltip="наведите">наведите</span> 
+        <span data-tooltip="для">для</span> 
+        <span data-tooltip="подсказки">подсказки</span>
+        <div id = "outputHere"></div>
+    </div>
+
+    <div id = "parentDiv">
+    <div id="childDiv">
+       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, aspernatur atque beatae commodi cum enim et eum fuga illum laudantium nisi nostrum officiis quis saepe sint tenetur ut vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci autem error est, ex impedit laboriosam neque nihil nobis pariatur provident quae quia quod reiciendis sed tempore unde ut voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis doloribus eos facere incidunt libero minus modi non nulla, omnis optio pariatur, placeat quia recusandae rem repellat suscipit unde veritatis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, aspernatur praesentium? Enim, magni recusandae! Accusamus aliquid blanditiis cumque dicta ducimus, est facere harum id nisi odio, quia sed tempora, veritatis.Tu vas louper ma remise de diplome.
+       </p>
+       <button>Видалити</button>
+    </div>
+   <br>
+   <div id="childDiv">
+       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, aspernatur atque beatae commodi cum enim et eum fuga illum laudantium nisi nostrum officiis quis saepe sint tenetur ut vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci autem error est, ex impedit laboriosam neque nihil nobis pariatur provident quae quia quod reiciendis sed tempore unde ut voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis doloribus eos facere incidunt libero minus modi non nulla, omnis optio pariatur, placeat quia recusandae rem repellat suscipit unde veritatis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, aspernatur praesentium? Enim, magni recusandae! Accusamus aliquid blanditiis cumque dicta ducimus, est facere harum id nisi odio, quia sed tempora, veritatis.Tu vas louper ma remise de diplome. 
+       </p>
+       <button>Видалити</button>
+   </div>
+   <br>
+   <div id="childDiv">
+       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, aspernatur atque beatae commodi cum enim et eum fuga illum laudantium nisi nostrum officiis quis saepe sint tenetur ut vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci autem error est, ex impedit laboriosam neque nihil nobis pariatur provident quae quia quod reiciendis sed tempore unde ut voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis doloribus eos facere incidunt libero minus modi non nulla, omnis optio pariatur, placeat quia recusandae rem repellat suscipit unde veritatis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, aspernatur praesentium? Enim, magni recusandae! Accusamus aliquid blanditiis cumque dicta ducimus, est facere harum id nisi odio, quia sed tempora, veritatis.Tu vas louper ma remise de diplome. 
+       </p>
+       <button>Видалити</button>
+    </div>
+   <br>
+   <div id="childDiv">
+       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, aspernatur atque beatae commodi cum enim et eum fuga illum laudantium nisi nostrum officiis quis saepe sint tenetur ut vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci autem error est, ex impedit laboriosam neque nihil nobis pariatur provident quae quia quod reiciendis sed tempore unde ut voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis doloribus eos facere incidunt libero minus modi non nulla, omnis optio pariatur, placeat quia recusandae rem repellat suscipit unde veritatis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, aspernatur praesentium? Enim, magni recusandae! Accusamus aliquid blanditiis cumque dicta ducimus, est facere harum id nisi odio, quia sed tempora, veritatis.Tu vas louper ma remise de diplome. 
+       </p>
+       <button>Видалити</button>
+    </div>
+   <br>
+   <div id="childDiv">
+       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, aspernatur atque beatae commodi cum enim et eum fuga illum laudantium nisi nostrum officiis quis saepe sint tenetur ut vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci autem error est, ex impedit laboriosam neque nihil nobis pariatur provident quae quia quod reiciendis sed tempore unde ut voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis doloribus eos facere incidunt libero minus modi non nulla, omnis optio pariatur, placeat quia recusandae rem repellat suscipit unde veritatis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, aspernatur praesentium? Enim, magni recusandae! Accusamus aliquid blanditiis cumque dicta ducimus, est facere harum id nisi odio, quia sed tempora, veritatis.Tu vas louper ma remise de diplome. 
+       </p>
+       <button>Видалити</button>
+    </div>
+   <br>
+    </div>
+
+    <script>
+        var parentDiv = document.getElementById('parentDiv');
+
+        parentDiv.addEventListener("click", function(event) {
+                var target = event.target;
+                
+                if (target.tagName != 'BUTTON') {
+                    return
+                }
+            
+               let targetDiv = target.parentNode;
+               targetDiv.style.display = "none"
+                }
+            );
+          
+
+    </script>
+</body>
+</html>

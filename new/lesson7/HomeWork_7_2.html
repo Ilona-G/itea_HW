@@ -1,0 +1,67 @@
+<!-- Реализуйте последний 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <script type="text/javascript">          
+                function Man(/**name,**/ walkingDistance, eats, drinks) {
+                   /** this.name = name;**/
+                    this.walkingDistance = walkingDistance;
+                    this.eats = eats;
+                    this.drinks = drinks;
+                    // добавляем методы объекта
+                    this.Walk = function () {
+                        document.write( this.name + " проходить за день " + this.walkingDistance + " км"+"<br />"); 
+                    };
+                    this.Eat = function () {
+                        document.write( this.name + " з\'їдає за день " + this.eats +" кг" + "<br />"); 
+                    };
+                    this.Drink = function () {
+                        document.write( this.name + " випиває за день " + this.drinks +" л" + "<br />"); 
+                    };
+                };
+                                    
+                function Soldier(name, makesShots) {
+                    this.name = name;
+                    this.makesShots = makesShots;
+                    this.Shoot = function () {
+                        document.write( this.name + " робить " + this.makesShots +" пострілів" + "<br />"); 
+                    };
+                };
+        
+                function Doctor(name, healed) {
+                    this.name = name;
+                    this.healed = healed;
+                    this.Cure = function () {
+                        document.write( this.name + " вилікував " + this.healed +" людей" + "<br />"); 
+                    };
+                };
+                
+                Soldier.prototype = new Man("солдат", 50, 3, 5);
+                Doctor.prototype = new Man("лікар", 25, 4, 10);
+                        
+                var firstSoldat = new Soldier("Перший солдат", 3);
+                var secondSoldat = new Soldier("Другий солдат", 10);
+
+                var therapist = new Doctor("Терапевт", 12);
+                var psychologist = new Doctor("Психолог", 1);
+
+        
+                firstSoldat.Walk();
+                firstSoldat.Eat();
+                firstSoldat.Drink();
+                firstSoldat.Shoot();                   
+                console.log(secondSoldat);
+
+                therapist.Walk();
+                therapist.Eat();
+                therapist.Drink();
+                therapist.Cure();
+                console.log(psychologist);
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

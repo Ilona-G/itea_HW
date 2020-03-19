@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork</title>
+</head>
+<body>
+    <!-- 
+	1. back to top button; drag;
+    2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается, 
+    при попадании div к краю окна, он переходит к началу окна. 
+    -->
+    <br><br><br><br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <button id = "mainBtn">Сюда</button>
+    <br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <p>Прокрути вниз</p>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <p>Ще трохи</p>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <p>back to top button</p>
+    <button id = "removeToButton">Повернутися</button>
+    <script>
+        var btnRemove = document.getElementById("removeToButton");
+        var mainBtn = document.getElementById("mainBtn");
+
+        btnRemove.addEventListener('click', removeToButton);
+        
+        function removeToButton (event) {
+            var coords = mainBtn.getBoundingClientRect();
+            var x = coords.left + pageXOffset;
+            var y = coords.top + pageYOffset;
+            window.scrollTo(x, y);
+        }
+
+    </script>
+    
+
+
+
+
+</body>
+</html>
+        

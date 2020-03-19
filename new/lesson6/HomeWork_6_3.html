@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork_scrool</title>
+    <style>
+        #myDiv{
+			display: red;
+			height: 100px;
+			width: 100px;
+			background-color: blue;
+			position: absolute;
+		}
+    </style>
+     
+</head>
+<body>
+    <div id = "myDiv"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    <!--<button id = "BtsMove">Move</button>-->
+	<button id = "BtsStop">Stop</button>
+    
+   <script>
+		var myDiv = document.getElementById("myDiv");
+		//var btsMove = document.getElementById("BtsMove");
+		var btsStop = document.getElementById("BtsStop");
+		var varInterval;
+		
+		//btsMove.addEventListener('click', RemoveDiv);
+		myDiv.addEventListener('click', RemoveDiv);
+		btsStop.addEventListener('click', StopDiv);
+		
+		var i = 0;
+		var fieldBorder = document.body.clientWidth;
+		console.log (fieldBorder);
+		function RemoveDiv(e){
+			varInterval = setInterval(newCoords, 10);
+			function newCoords(){
+				if ( i < fieldBorder) {
+					myDiv.style.left = i+"px";
+					console.log (i);
+					i += 1; 
+				} else { 
+					i = 0;
+					}
+			}
+		}			
+		function StopDiv(e){
+			clearInterval(varInterval); 
+		}	
+    </script>
+    
+
+
+
+
+</body>
+</html>

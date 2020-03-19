@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Создайте страницу которая запрашивает имя пользователя, если пользователь вводит "Admin" либо "admin" он попадает на страницу, 
+        которая оповещает его о том что " Пользоваетль Admin(не статическая строка, а данные что ввел пользователь) вошел в систему" 
+        а рядом разместите кнопку "Выход" которая вернет пользователя к модальному окну ввода логина. 
+        Реализуйте код как для куки так и для localstorage. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="myModal" class="container">
+        <form class="mysubform">
+            <input type="text" class='userName' placeholder="Ваш логін">
+                        
+            <input type="submit" id = "submitbtn" class="submitbtn" value="Вхід">
+        </form>
+    </div>
+    <div id="newPage">
+        Привіт
+        <p id = 'greeting'></p>
+        <input type="button" id = "returnBtn" value="Вихід">
+    </div>
+
+<script>
+     var modal = document.getElementById('myModal');
+     var newPage = document.getElementById('newPage');
+     var userName = document.getElementsByTagName('input')[0];
+     var enterBtn = document.getElementById('submitbtn');
+     var greeting = document.getElementById('greeting');
+     
+     enterBtn.addEventListener('click', checkForm);
+     function checkForm(e){
+         e.preventDefault();
+         if(userName.value!=''){
+             var reg = /A|a|dmin/;
+             if(userName.value.match(reg)){                
+                setStorage();
+                modal.style.display="none";
+                newPage.style.display="block";
+                getStorage();                           
+             }else{alert('Спробуйте ще раз')}
+         }else{alert('Введіть ваш логін')}
+     }
+
+     function setStorage(){
+        window.localStorage.name = userName.value;
+     }
+
+     function getStorage(){
+        greeting.innerHTML= window.localStorage.name;                   
+                
+     }
+
+     var returnBtn = document.getElementById('returnBtn');
+     console.log (returnBtn);
+     returnBtn.onclick = function(){
+        modal.style.display="block";
+        newPage.style.display="none";
+        userName.value = '';
+     }
+     
+
+</script>
+   
+
+    
+</body>
+</html>

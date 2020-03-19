@@ -1,0 +1,63 @@
+<!-- Реализуйте последний 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <script type="text/javascript">          
+                function Doctor( walkingDistance, eats, drinks, healed) {
+                   
+                    this.walkingDistance = walkingDistance;
+                    this.eats = eats;
+                    this.drinks = drinks;
+                    this.healed = healed;
+                    this.Walk = function () {
+                        document.write( this.name + " проходить за день " + this.walkingDistance + " км"+"<br />"); 
+                    };
+                    this.Eat = function () {
+                        document.write( this.name + " з\'їдає за день " + this.eats +" кг" + "<br />"); 
+                    };
+                    this.Drink = function () {
+                        document.write( this.name + " випиває за день " + this.drinks +" л" + "<br />"); 
+                    };
+                    this.Cure = function () {
+                        document.write( this.name + " вилікував " + this.healed +" людей" + "<br />"); 
+                    };
+                };
+                                    
+                function Dentist(name, healed) {
+                    this.name = name;
+                    this.healed = healed;
+                    this.Cure = function () {
+                        document.write( this.name + " пролікував зуби " + this.healed +" клієнтам" + "<br />"); 
+                    };
+                };
+        
+                function Surgeon(name, healed) {
+                    this.name = name;
+                    this.healed = healed;
+                    this.Cure = function () {
+                        document.write( this.name + " прооперував " + this.healed +" паціентів" + "<br />"); 
+                    };
+                };
+                
+                Dentist.prototype = new Doctor( 50, 3, 5);
+                Surgeon.prototype = new Doctor(25, 4, 10);
+                        
+                var dentistKyiv = new Dentist("Дантист з Києва", 3);
+                var surgeonLviv = new Surgeon("Хірург зі Львова", 10);
+
+                 
+                dentistKyiv.Walk();
+                dentistKyiv.Cure();                   
+                console.log(dentistKyiv);
+
+                surgeonLviv.Drink();
+                surgeonLviv.Cure();
+                console.log(surgeonLviv);
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
