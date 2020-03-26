@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Создание объекта запроса</title>
+    <link href ="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Outline&display=swap" rel="stylesheet">
+    <script ></script>
+</head>
+<body>
+  <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+  <div>
+    <button id= "btnPrevious"  class = "forList" type="button">Previous</button>
+    <button id= "btnNext" class = "forList" type="button">Next</button>
+  </div>
+  <div id="myDiv"></div>
+    
+    <div id="container" >
+            
+    </div>
+
+    
+
+    <script type="text/javascript" >
+        var url = 'https://swapi.co/api/people/';
+        var myDiv = document.getElementById('container');
+        var newUrl = '';
+        
+      var spinner = document.getElementsByClassName('lds-ellipsis')[0];
+      function showSpinner() {
+        spinner.classList.add('show');
+      }
+      function hideSpinner() {
+        spinner.classList.remove('show');
+      }
+
+      var btnNext = document.getElementById('btnNext');
+      var btnPrevious = document.getElementById('btnPrevious');
+      var init = {
+        method: 'GET'
+      };    
+
+      btnNext.addEventListener('click', newLoadData);
+      function newLoadData(){
+        document.getElementsByTagName('ul')[0].remove();
+        window.localStorage.oldUrl = url;        
+        url = newUrl;
+        btnPrevious.style.display = "inline-block";
+        loadData()
+      }
+
+      btnPrevious.addEventListener('click', previousLoadData);
+
+      function previousLoadData(){
+        document.getElementsByTagName('ul')[0].remove();
+        url = window.localStorage.oldUrl;
+        //btnPrevious.style.display = "inline-block";
+        loadData()
+      }
+
+      window.addEventListener('load', loadData);
+
+      function loadData() {
+        showSpinner()
+        fetch(url, init)
+          .then(function(response) { 
+            if (response.status !== 200) {  
+              console.log('Looks like there was a problem. Status Code: ' + response.status);  
+              return;
+                } 
+                            
+            response.json().then(function(data) { 
+                hideSpinner(); 
+                var ulPerson = document.createElement('ul');
+                    myDiv.appendChild(ulPerson);
+                for (var i=0; i<10; i++){
+                    var li = document.createElement('li');
+                    li.innerHTML = data.results[i].name;
+                    ulPerson.appendChild(li);
+                }
+              newUrl = data.next;                            
+            }); 
+          })
+          .catch(function(err) {  
+            hideSpinner();
+            console.log('Fetch Error :-S', err);
+          });
+      }
+      var myColection;
+      var urlPlanet = '';
+      var urlSpecies = '';
+      var arrayUrlMoves = [];
+      var strTitleMoves = '';
+      var arrayTitlesMoves = [];
+      var txt = '';
+      myDiv.addEventListener('click', showTable);
+
+      function showTable(e){
+        var someDiv = document.getElementsByClassName('divTable');
+        if(someDiv.length>0){
+          for(k=0; k<someDiv.length; k++){
+            
+            someDiv[k].style.display='none';
+            }}
+          var target = e.target;
+          if(target.tagName == 'LI'){
+            showSpinner();
+            var myLi = target;
+            var person = myLi.innerHTML;
+              fetch(url, init)
+                .then(function(response) {                    
+                  response.json().then(function(data) { 
+                      myColection = data.results;                                                                 
+                  })
+                  .then(function(){
+                    for (var i=0; i<10; i++){
+                      if(person === myColection[i].name){
+                        var birthYear =  myColection[i].birth_year;
+                        txt = null;
+                        txt = "<table id = 'table' border='1'>";
+                        txt = txt +"<tr>"+ "<td>Year of birth</td><td>" +birthYear+ "</td></tr>";
+                        var gender = myColection[i].gender;
+                        txt = txt +"<tr>"+ "<td>Gender</td><td>" +gender+ "</td></tr>";
+                        urlPlanet = myColection[i].homeworld;
+                        var titlePlanet = '';
+                        urlSpecies = myColection[i].species;
+                        arrayUrlMoves = myColection[i].films;
+                                               
+                      }
+                    }     
+                  })            
+                  .then(function(){
+                        fetch(urlPlanet)
+                          .then(function(response){
+                            response.json().then(function(data){
+                              titlePlanet = data.name;
+                              txt = txt +"<tr>"+ "<td>Home planet</td><td>" +titlePlanet+ "</td></tr>";
+                            })
+                          })            
+                  })
+                  .then(function(){
+                        fetch(urlSpecies)
+                          .then(function(response){
+                            response.json().then(function(data){
+                              species = data.name;
+                              txt = txt +"<tr>"+ "<td>Species</td><td>" +species+ "</td></tr>";
+                            })
+                          })            
+                  })
+                  .then(function(){
+                    strTitleMoves = '';
+                    for(var n=0; n<arrayUrlMoves.length; n++){
+                      fetch(arrayUrlMoves[n])
+                      .then(function(response){
+                        response.json().then(function(data){
+                          strTitleMoves += ";"+data.title;
+                        })
+                      })
+                    }
+                  })
+                  
+                        
+                  window.setTimeout( function(){
+                    txt = txt + "<tr><td>Movies</td><td id='moves'></td></tr></table><button class = 'close'>X</button>";
+                    arrayTitlesMoves = null;
+                    arrayTitlesMoves = strTitleMoves.split(";");
+                    arrayTitlesMoves.splice(0, 1);                    
+                    var divTable = document.createElement('div');
+                    divTable.className = "divTable";
+                    var btnClose = document.createElement('button');
+                    target.appendChild(divTable);
+                    divTable.innerHTML = txt;                   
+                    var cellMovies = document.getElementById('moves');
+                    var ulMoves = document.createElement('ul');
+                    cellMovies.appendChild(ulMoves);
+                    
+                    for (var j = 0; j<arrayTitlesMoves.length; j++){
+                      var liMoves = document.createElement('li');
+                      liMoves.innerHTML = arrayTitlesMoves[j];
+                      ulMoves.appendChild(liMoves);
+                      hideSpinner();
+                    }
+
+                  }, 3000);   
+                                   
+                })
+                .catch(function(err) {  
+                  hideSpinner();
+                  console.log('Fetch Error :-S', err);
+                });
+           }
+           }
+      
+   
+    </script>
+</body>
+</html>

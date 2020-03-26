@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Создание объекта запроса</title>
+    <link href ="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script ></script>
+</head>
+<body>
+  <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    
+    <div id="container" >
+      <div class = "person">
+        <div class = "personInfo">
+          <table border = "1" width = "100%" cellpadding = "5">
+            <tr>
+              <td>Name</td>
+              <td class='tableName'></td>
+            </tr>
+            <tr>
+              <td>Year of birth</td>
+              <td class="tableYear"></td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td class="tableGender"></td>
+            </tr>
+            <tr>
+              <td>List of Movies</td>
+              <td class="tableMovies">
+                <ul></ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Home planet</td>
+              <td class="tablePlanet"></td>
+            </tr>
+            <tr>
+              <td>Subspecies</td>
+              <td class="tableSub"></td>
+            </tr>            
+          </table>
+        </div>
+        <div class = personName></div>        
+      </div>
+      <div class = "person">
+        <div class = "personInfo">
+          <table border = "1" width = "100%" cellpadding = "5">
+            <tr>
+              <td>Name</td>
+              <td class='tableName'></td>
+            </tr>
+            <tr>
+              <td>Year of birth</td>
+              <td class="tableYear"></td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td class="tableGender"></td>
+            </tr>
+            <tr>
+              <td>List of Movies</td>
+              <td class="tableMovies"></td>
+            </tr>
+            <tr>
+              <td>Home planet</td>
+              <td class="tablePlanet"></td>
+            </tr>
+            <tr>
+              <td>Subspecies</td>
+              <td class="tableSub"></td>
+            </tr>            
+          </table>
+        </div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo">
+          <table border = "1" width = "100%" cellpadding = "5">
+            <tr>
+              <td>Name</td>
+              <td class='tableName'></td>
+            </tr>
+            <tr>
+              <td>Year of birth</td>
+              <td class="tableYear"></td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td class="tableGender"></td>
+            </tr>
+            <tr>
+              <td>List of Movies</td>
+              <td class="tableMovies">
+                <ul></ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Home planet</td>
+              <td class="tablePlanet"></td>
+            </tr>
+            <tr>
+              <td>Subspecies</td>
+              <td class="tableSub"></td>
+            </tr>            
+          </table>
+        </div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo">
+          <table border = "1" width = "100%" cellpadding = "5">
+            <tr>
+              <td>Name</td>
+              <td class='tableName'></td>
+            </tr>
+            <tr>
+              <td>Year of birth</td>
+              <td class="tableYear"></td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td class="tableGender"></td>
+            </tr>
+            <tr>
+              <td>List of Movies</td>
+              <td class="tableMovies">
+                <ul></ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Home planet</td>
+              <td class="tablePlanet"></td>
+            </tr>
+            <tr>
+              <td>Subspecies</td>
+              <td class="tableSub"></td>
+            </tr>            
+          </table>
+        </div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo"></div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo"></div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo"></div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo"></div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo"></div>
+        <div class = personName></div>
+      </div>
+      <div class = "person">
+        <div class = "personInfo"></div>
+        <div class = personName></div>
+      </div>
+        
+    </div>
+    <button id= "Btn" type="button">Next</button>
+
+    <script type="text/javascript" >
+      var url = 'https://swapi.co/api/people/';
+      var urlfoto = 'http://www.json-generator.com/api/json/get/cftzlsMlFe?indent=2';
+      var spinner = document.getElementsByClassName('lds-ellipsis')[0];
+      function showSpinner() {
+        spinner.classList.add('show');
+      }
+      function hideSpinner() {
+        spinner.classList.remove('show');
+      }
+
+      var personName = document.getElementsByClassName('personName');
+      var myBtn = document.getElementById('Btn');
+      var init = {
+        method: 'GET'
+      };    
+
+      myBtn.addEventListener('click', loadData);
+      window.addEventListener('load', loadData);
+
+      function loadData() {
+        showSpinner()
+        fetch(url, init)
+          .then(function(response) { 
+            if (response.status !== 200) {  
+              console.log('Looks like there was a problem. Status Code: ' + response.status);  
+              return;
+                } 
+                            
+            response.json().then(function(data) { 
+              hideSpinner(); 
+              for (var i=0; i<10; i++){
+                personName[i].innerHTML=data.results[i].name; 
+            }
+              url=data.next;
+                            
+            }); 
+          })
+          .catch(function(err) {  
+            hideSpinner();
+            console.log('Fetch Error :-S', err);
+
+          });
+      }
+
+      var personDiv = document.getElementsByClassName('person')[0];
+      var tbName = document.getElementsByClassName('tableName');
+      var tbBrYear = document.getElementsByClassName('tableYear');
+      var tbGender = document.getElementsByClassName('tableGender');
+      var tbMoves = document.getElementsByClassName('tableMoves');
+      var tbPlanet = document.getElementsByClassName('tablePlanet');
+      var myUl = document.getElementsByTagName('ul');
+      var urlPlanet = '';
+      
+    personDiv.addEventListener('click', showTable);
+    //window.addEventListener('load', showTable);
+    
+    window.addEventListener('load', showFoto);
+    var arrayMyjson 
+    
+    function showFoto(){
+      fetch(urlfoto)
+        .then(function(response){
+          response.json().then(function(data){
+            arrayMyjson = data;
+            console.log('tyt');
+            window.setTimeout(function(){
+            console.dir(personName[1].innerHTML);
+            for(var i=0; i<4; i++){
+              if(arrayMyjson[i].name === personName[i].innerHTML){
+                 document.getElementsByClassName('personInfo')[i].style.background='url('+arrayMyjson[i].foto+')';
+              }
+
+            }
+          }, 4000);
+          })
+
+          })
+        
+    }
+      
+      function showTable(e){
+        var target = e.target;
+        document.getElementsByTagName('table')[0].style.visibility= 'visible';
+        
+        fetch(url, init)
+          .then(function(response) { 
+                                    
+            response.json().then(function(data) { 
+              for (var i=0; i<4; i++){
+                tbName[i].innerHTML= data.results[i].name;
+                tbBrYear[i].innerHTML= data.results[i].birth_year;
+                tbGender[i].innerHTML= data.results[i].gender;
+                //var arrayMoves = data.results[i].films;
+                urlPlanet = data.results[i].homeworld;
+                                   
+                fetch(data.results[i].homeworld)
+                  .then(function(response){
+                    response.json().then(function(data){
+                               
+                     //return data.name;
+                                       
+              
+                    })
+                  })
+                  .catch(function(err) {  
+                      console.log('Fetch Error :-S', err);  
+                    });
+                    console.log(tbPlanet[i]);
+                   
+               // getSmt(urlPlanet);                
+               /** for (var n=0; n<arrayMoves.length-1; n++){
+                 var urlMoves = '';
+                  urlMoves = arrayMoves[n];
+                  fetch(urlMoves, init)
+                    .then(function(response){
+                      response.json().then(function(data){
+                      
+                      console.dir(titleMoves);         
+                        console.dir(data.title);
+                      })
+                    })
+                    .catch(function(err) {  
+                      console.log('Fetch Error :-S', err);  
+                    });
+                    
+                    var li = document.createElement('li');
+                        li.innerHTML = data.title;
+                        myUl.appendChild(li); 
+                  }**/
+                
+                
+                //tbMoves[i].innerHTML= data.results[i].films;
+              // tbPlanet[i].innerHTML= data.results[i].homeworld;
+
+              }
+                          
+            }); 
+          })
+          .catch(function(err) {  
+            console.log('Fetch Error :-S', err);  
+          });
+      }
+
+     /** function getSmt (urlS){
+        fetch(urlS)
+		  .then(  
+		    function(response) {  
+		      response.json().then(function(data) {  
+		        console.dir(data.results[0]);  
+		      });  
+		    }  
+		  )  
+		  .catch(function(err) {  
+		    console.log('Fetch Error :-S', err);  
+		  });
+      }**/
+    </script>
+</body>
+</html>
